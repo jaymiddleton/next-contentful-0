@@ -11,7 +11,7 @@ export default function HeroPage({
   excerpt,
   author,
   slug,
-  bodyText
+  bodyContent
 }) {
   return (
     <section>
@@ -36,7 +36,7 @@ export default function HeroPage({
           {author && <Avatar name={author.name} picture={author.picture} />}
         </div>
       </div>
-      <PostBody content={bodyText} />
+      <PostBody content={bodyContent} />
     </section>
   )
 }

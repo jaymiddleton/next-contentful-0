@@ -8,7 +8,7 @@ import Header from '../components/header'
 import PageHeader from '../components/page-header'
 import DisclaimerFooter from '../components/disclaimer-footer'
 import Layout from '../components/layout'
-import { getFirstPage, getAllPagesWithSlug } from '../lib/api'
+import { getFirstPage, getAllPagesWithSlug, getPreviewPageBySlug } from '../lib/api'
 import PostTitle from '../components/post-title'
 import { CMS_NAME } from '../lib/constants'
 
@@ -33,19 +33,19 @@ export default function Page({ page, preview }) {
                 <title>
                   {page.title} | Next.js Blog Example with {CMS_NAME}
                 </title>
-                <meta property="og:image" content={page.heroImage && page.heroImage.url} />
+                <meta property="og:image" content={page.coverImage && page.coverImage.url} />
               </Head>
               <PageHeader
-                headline={page.headline}
-                heroImage={page.heroImage}
-                subhead={page.subhead}
+                title={page.title}
+                coverImage={page.coverImage}
+                subtitle={page.subtitle}
               />
-              <PageBody content={page.bodyText} />
-              {page.cta && page.linkOut &&
-                <CTA text={page.cta} url={page.linkOut} />
+              <PageBody content={page.bodyContent} />
+              {page.callToAction && page.linkOut &&
+                <CTA text={page.callToAction} url={page.linkOut} />
               }
-              {page.disclaimerText &&
-                <DisclaimerFooter disclaimerText={page.disclaimerText} />
+              {page.disclaimer &&
+                <DisclaimerFooter disclaimer={page.disclaimer} />
               }
             </article>
           </>
@@ -55,8 +55,8 @@ export default function Page({ page, preview }) {
   )
 }
 
-export async function getStaticProps({ params, preview = false }) {
-  const data = await getFirstPage(preview)
+export async function getStaticProps({ preview = false }) {
+  const data = await getPreviewPageBySlug('/', preview)
 
   return {
     props: {

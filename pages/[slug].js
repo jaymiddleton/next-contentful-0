@@ -33,19 +33,19 @@ export default function Page({ page, preview }) {
                 <title>
                   {page.title} | Next.js Blog Example with {CMS_NAME}
                 </title>
-                <meta property="og:image" content={page.heroImage && page.heroImage.url} />
+                <meta property="og:image" content={page.coverImage && page.coverImage.url} />
               </Head>
               <PageHeader
-                headline={page.headline}
-                heroImage={page.heroImage}
-                subhead={page.subhead}
+                title={page.title}
+                coverImage={page.coverImage}
+                subtitle={page.subtitle}
               />
-              <PageBody content={page.bodyText} />
-              {page.cta && page.linkOut &&
-                <CTA text={page.cta} url={page.linkOut} />
+              <PageBody content={page.bodyContent} />
+              {page.callToAction && page.linkOut &&
+                <CTA text={page.callToAction} url={page.linkOut} />
               }
-              {page.disclaimerText &&
-                <DisclaimerFooter disclaimerText={page.disclaimerText} />
+              {page.disclaimer &&
+                <DisclaimerFooter disclaimer={page.disclaimer} />
               }
             </article>
           </>

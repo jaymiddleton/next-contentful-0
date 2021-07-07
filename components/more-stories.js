@@ -12,11 +12,11 @@ export default function MoreStories({ pages }) {
         {pages && pages.map((page) => (
           <PostPreview
             key={page.slug}
-            title={page.headline}
-            coverImage={page.heroImage}
+            title={page.title}
+            coverImage={page.coverImage}
             slug={page.slug}
             date={today}
-            excerpt={page.subhead}
+            excerpt={page.subtitle}
           />
         ))}
       </div>
