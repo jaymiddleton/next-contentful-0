@@ -1,7 +1,4 @@
-import Image from 'next/image'
-const contentfulLoader = ({src, width, quality})=>{
-  return `${src}?${width && `w=${width}&` || ''}&q=${quality || 75}`
-}
+import LazyImage from './lazy-image'
 
 export default function PostHeader({ title, subtitle, coverImage }) {
   return (
@@ -12,7 +9,7 @@ export default function PostHeader({ title, subtitle, coverImage }) {
         <h2>{subtitle}</h2>
       }
       {coverImage &&
-        <Image alt={title} loader={contentfulLoader} src={coverImage.url} width={coverImage.width} height={coverImage.height} />
+        <LazyImage alt={title} src={coverImage?.url} width={coverImage?.width} height={coverImage?.height} />
       }
     </>
   )
